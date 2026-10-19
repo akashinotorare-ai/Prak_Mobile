@@ -1,38 +1,39 @@
-package com.example.hanif_3tia.pertemuan_6
+package com.example.hanif_3tia.Home.pertemuan_5
 
 import android.os.Bundle
 import android.view.MenuItem
+import android.webkit.WebViewClient
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
-import androidx.fragment.app.Fragment
 import com.example.hanif_3tia.R
-import com.example.hanif_3tia.databinding.ActivityEnamBinding
+import com.example.hanif_3tia.databinding.ActivityWebViewBinding
 
-class EnamActivity : AppCompatActivity() {
-    private lateinit var binding: ActivityEnamBinding
+class WebViewActivity : AppCompatActivity() {
+    private lateinit var binding: ActivityWebViewBinding
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
-        binding = ActivityEnamBinding.inflate(layoutInflater)
+
+        binding = ActivityWebViewBinding.inflate(layoutInflater)
         setContentView(binding.root)
         ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main)) { v, insets ->
             val systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars())
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom)
             insets
         }
+        binding.WebView.webViewClient = WebViewClient()
+        binding.WebView.settings.javaScriptEnabled = true
+        binding.WebView.loadUrl("https://freedium-mirror.cfd/")
+
         setSupportActionBar(binding.toolbar)
         supportActionBar?.apply {
-            title = "Halaman Pertemuan 6"
-            subtitle = "Ini adalah subtitle"
+            title = "Web Freedium"
             setDisplayHomeAsUpEnabled(true)
             setDisplayShowHomeEnabled(true)
             setHomeAsUpIndicator(R.drawable.ic_arrow_back)
         }
-        binding.btnFrag1.setOnClickListener { replaceFragment(SatuFragment()) }
-        binding.btnFrag2.setOnClickListener { replaceFragment(DuaFragment()) }
-        binding.btnFrag3.setOnClickListener { replaceFragment(TigaFragment()) }
     }
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         return when (item.itemId) {
@@ -42,11 +43,5 @@ class EnamActivity : AppCompatActivity() {
             }
             else -> super.onOptionsItemSelected(item)
         }
-    }
-    private fun replaceFragment(fragment: Fragment, addToBackStack: Boolean = true) {
-        val transaction = supportFragmentManager.beginTransaction()
-            .replace(binding.fragmentContainer.id, fragment)
-        if (addToBackStack) transaction.addToBackStack(null)
-        transaction.commit()
     }
 }
