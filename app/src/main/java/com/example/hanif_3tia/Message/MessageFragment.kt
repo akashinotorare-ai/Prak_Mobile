@@ -1,12 +1,19 @@
 package com.example.hanif_3tia.Message
 
+import android.content.Intent
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
+import android.view.Menu
+import android.view.MenuInflater
+import android.view.MenuItem
 import android.view.View
 import android.view.ViewGroup
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.view.MenuProvider
+import androidx.lifecycle.Lifecycle
 import com.example.hanif_3tia.R
+import com.example.hanif_3tia.TutorialScreenActivity
 import com.example.hanif_3tia.databinding.FragmentHomeBinding
 import com.example.hanif_3tia.databinding.FragmentMessageBinding
 
@@ -41,5 +48,21 @@ class MessageFragment : Fragment() {
 
         val adapter = MessageAdapter(requireContext(), messageList)
         binding.listMessageItem.adapter = adapter
+
+        requireActivity().addMenuProvider(object : MenuProvider {
+            override fun onCreateMenu(menu: Menu, menuInflater: MenuInflater) {
+                menuInflater.inflate(R.menu.message_toolbar_menu, menu)
+            }
+            override fun onMenuItemSelected(menuItem: MenuItem): Boolean {
+                return when (menuItem.itemId) {
+                    R.id.action_tutorial -> {
+                        startActivity(Intent(requireContext(), TutorialScreenActivity::class.java))
+                        true
+                    }
+                    else -> false
+                }
+            }
+        }, viewLifecycleOwner, Lifecycle.State.RESUMED)
     }
+
 }

@@ -14,6 +14,7 @@ import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 import com.example.hanif_3tia.Home.pertemuan_5.LimaActivity
 import com.example.hanif_3tia.Home.pertemuan_6.EnamActivity
+import com.example.hanif_3tia.Home.pertemuan_9.SembilanActivity
 import com.example.hanif_3tia.LoginActivity
 import com.example.hanif_3tia.R
 import com.example.hanif_3tia.databinding.ActivityMainBinding
@@ -91,6 +92,9 @@ class HomeFragment : Fragment() {
         }
         binding.btntoEnam.setOnClickListener {
             startActivity(Intent(requireContext(), EnamActivity::class.java))
+        }
+        binding.btntoSembilan.setOnClickListener {
+            startActivity(Intent(requireContext(), SembilanActivity::class.java))
         }
     }
 }
