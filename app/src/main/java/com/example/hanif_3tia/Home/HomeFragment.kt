@@ -12,6 +12,7 @@ import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
+import com.example.hanif_3tia.Home.pertemuan_10.TenthActivity
 import com.example.hanif_3tia.Home.pertemuan_5.LimaActivity
 import com.example.hanif_3tia.Home.pertemuan_6.EnamActivity
 import com.example.hanif_3tia.Home.pertemuan_9.SembilanActivity
@@ -95,6 +96,9 @@ class HomeFragment : Fragment() {
         }
         binding.btntoSembilan.setOnClickListener {
             startActivity(Intent(requireContext(), SembilanActivity::class.java))
+        }
+        binding.btntoTenth.setOnClickListener {
+            startActivity(Intent(requireContext(), TenthActivity::class.java))
         }
     }
 }
